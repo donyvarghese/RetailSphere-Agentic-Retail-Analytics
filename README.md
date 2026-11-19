@@ -1,61 +1,37 @@
-# RetailSphere – Agentic AI-Powered Retail Analytics Platform
+# RetailSphere — Agentic AI-Powered Retail Analytics
 
-An end-to-end retail analytics project combining Databricks, Apache Spark, Python, local Large Language Models (LLMs), MLflow, and Streamlit.
+**An end-to-end retail analytics portfolio project combining Databricks, PySpark, local LLMs, Python analytics tools, MLflow, and Streamlit.**
 
-RetailSphere transforms raw retail transaction data into business insights through a Medallion data architecture and an AI-powered analytics assistant.
+RetailSphere transforms synthetic retail transaction data into business insights using a Medallion data architecture and a locally running AI analytics assistant.
 
 ## Project Overview
 
-RetailSphere demonstrates how modern data engineering and Agentic AI techniques can be combined to build an interactive retail analytics platform.
+The project has two main components:
 
-The project processes synthetic retail data through Bronze, Silver, and Gold layers in Databricks. The resulting Gold analytics are exported as a JSON snapshot and used by a locally running AI agent.
+1. **Data Engineering:** A Databricks pipeline that processes retail data through Bronze, Silver, and Gold layers using Apache Spark and Delta tables.
+2. **Agentic AI Analytics:** A local AI agent powered by Qwen 2.5 7B that uses Python analytics tools to answer natural-language business questions.
 
-Users can explore business performance through a Streamlit dashboard or ask natural-language questions using the AI retail assistant.
+A Streamlit dashboard brings business analytics and the AI assistant together in one interface.
 
 ## Architecture
 
-```text
-        Synthetic Retail Data
-                  |
-                  v
-          Databricks Free Edition
-                  |
-                  v
-          Bronze Data Layer
-          Raw retail datasets
-                  |
-                  v
-          Silver Data Layer
-          Cleaned and transformed
-                  |
-                  v
-           Gold Data Layer
-          Business-ready analytics
-                  |
-                  v
-          Export Gold JSON
-                  |
-                  v
-          Local Python Agent
-                  |
-          +-------+-------+
-          |               |
-          v               v
-      Ollama          Python Analytics
-      Qwen 2.5 7B         Tools
-          |               |
-          +-------+-------+
-                  |
-                  v
-             AI Responses
-                  |
-                  v
-           Streamlit Dashboard
-
-          MLflow: Tracing and Evaluation
+```mermaid
+flowchart TB
+    A["Synthetic Retail Data"] --> B["Databricks Free Edition"]
+    B --> C["Bronze Layer<br/>Raw Delta Tables"]
+    C --> D["Silver Layer<br/>Cleaned and Validated Data"]
+    D --> E["Gold Layer<br/>Business Analytics Tables"]
+    E --> F["Export Gold Data as JSON"]
+    F --> G["Local Python AI Agent"]
+    G <--> H["Ollama — Qwen 2.5 7B"]
+    G <--> I["Registered Python Analytics Tools"]
+    G --> J["AI-generated Business Insights"]
+    J --> K["Streamlit Dashboard"]
+    G -.-> L["MLflow Tracking and Tracing"]
+    I -.-> L
 ```
 
-**Important:** The AI agent runs locally on the developer's machine. It uses an exported snapshot of Databricks Gold data rather than a live Databricks connection. The snapshot must be re-exported when the underlying Gold data changes.
+**Data connectivity note:** Databricks and the local AI application are separate execution environments. The Gold tables are exported to a JSON snapshot and copied to the local project. The local agent reads this snapshot; it does not query Databricks live. Re-export the data to refresh the snapshot.
 
 ## Technology Stack
 
@@ -64,79 +40,156 @@ Users can explore business performance through a Streamlit dashboard or ask natu
 | Data engineering | Databricks Free Edition |
 | Data processing | Apache Spark / PySpark |
 | Data storage | Delta tables |
-| Architecture | Medallion (Bronze, Silver, Gold) |
+| Data architecture | Medallion architecture |
 | Programming | Python |
-| Local LLM | Qwen 2.5 7B |
+| Local language model | Qwen 2.5 7B |
 | LLM runtime | Ollama |
 | Agent observability | MLflow |
 | Dashboard | Streamlit |
 | Data exchange | JSON |
+| Version control | Git and GitHub |
 
-## Data Engineering Pipeline
+## Repository Structure
 
-### Bronze Layer
-- Ingest synthetic retail customers, products, orders, and order items.
-- Store raw datasets as Delta tables.
+```text
+RetailSphere-Agentic-Retail-Analytics/
+│
+├── databricks/
+│   ├── 00_environment_setup.py
+│   ├── 01_retail_data_ingestion.py
+│   ├── 02_silver_data_transformation.py
+│   ├── 03_gold_business_analytics.py
+│   ├── 04_retail_analytics_tools.py
+│   └── 05_retail_ai_agent.py
+│
+├── agent/
+│   ├── retail_agent.py
+│   └── evaluate_agent.py
+│
+├── dashboard/
+│   ├── app.py
+│   └── pages/
+│       ├── overview.py
+│       ├── products.py
+│       ├── regional.py
+│       └── ai_assistant.py
+│
+├── data/
+│   └── retailsphere_data.json
+│
+├── docs/
+│   └── architecture.md
+│
+├── mlflow_evaluation.py
+├── requirements.txt
+├── .gitignore
+└── README.md
+```
 
-### Silver Layer
-- Handle duplicate records.
-- Clean and standardise customer data.
-- Convert data types.
-- Validate order and product records.
+## Databricks Data Engineering Pipeline
 
-### Gold Layer
-- Join customer, product, order, and order-item datasets.
-- Calculate item-level revenue.
-- Exclude cancelled orders.
-- Generate business-level analytical tables.
+The pipeline uses a Bronze → Silver → Gold architecture.
 
-### Gold Tables
+### Bronze — Data Ingestion
+
+Notebook: `01_retail_data_ingestion.py`
+
+- Creates synthetic retail customers, products, orders, and order-item datasets.
+- Ingests source datasets into Delta tables.
+- Establishes the raw data foundation.
+
+### Silver — Data Transformation
+
+Notebook: `02_silver_data_transformation.py`
+
+- Handles duplicate records.
+- Cleans and standardises customer information.
+- Converts and validates data types.
+- Applies data-quality filters to orders, products, and order items.
+
+### Gold — Business Analytics
+
+Notebook: `03_gold_business_analytics.py`
+
+- Joins customer, product, order, and order-item datasets.
+- Calculates item-level revenue.
+- Excludes cancelled orders from delivered-sales analysis.
+- Produces business-ready analytical tables.
+
+Gold tables:
 
 - `gold_sales`
 - `gold_monthly_revenue`
 - `gold_product_performance`
 - `gold_state_sales`
 
-## AI Retail Assistant
+### Additional Databricks Notebooks
 
-The local AI assistant uses Qwen 2.5 7B through Ollama.
+| Notebook | Purpose |
+|---|---|
+| `00_environment_setup.py` | Initial environment and project setup |
+| `04_retail_analytics_tools.py` | Python analytics functions using Spark data |
+| `05_retail_ai_agent.py` | Initial Databricks agent prototype |
 
-It can interpret natural-language questions and select from registered Python analytics tools.
+The local Qwen-powered agent is maintained separately in the `agent/` directory.
 
-Examples:
-- What is the total business revenue?
+## Local Agentic AI Assistant
+
+The local AI assistant uses:
+
+- Qwen 2.5 7B as the language model.
+- Ollama for local model execution.
+- Python functions as registered analytics tools.
+- Tool schemas to describe available operations.
+- Tool validation to restrict execution to registered functions.
+
+### Supported Analytics Tools
+
+- `get_total_revenue`
+- `get_top_products`
+- `get_state_revenue`
+- `get_monthly_revenue`
+- `get_top_products_revenue_contribution`
+
+### Example Questions
+
+- What is the total revenue generated by the business?
 - Show the top three products by revenue.
 - Which Indian state generated the highest revenue?
 - Show monthly revenue.
 - What percentage of revenue came from the top three products?
 
-The agent uses tool validation to restrict execution to registered analytics functions.
+The agent uses tool results for business figures rather than relying on the language model to invent numerical answers.
 
 ## MLflow Observability and Evaluation
 
-MLflow is used for:
+MLflow supports agent observability and experiment tracking.
+
+Implemented capabilities:
+
 - Agent execution tracing.
-- Nested function/tool tracing.
+- Nested tool/function tracing.
 - Experiment tracking.
 - Evaluation metrics.
-- Recording agent tool-selection behaviour.
+- Tool-selection validation.
 
-The current evaluation suite contains seven tests covering deterministic analytics, tool validation, and LLM tool selection.
+The current evaluation suite reports **7/7 tests passed** on the synthetic project dataset.
 
-The reported test result is 7/7 passed on the synthetic project dataset. This is a development evaluation result, not a production reliability guarantee.
+This is a development test result, not a production reliability guarantee.
 
 ## Streamlit Dashboard
 
-The dashboard provides:
+The dashboard includes:
+
 - Business overview and revenue KPIs.
 - Monthly revenue analysis.
-- Product performance.
-- Regional revenue analysis.
-- AI-powered natural-language analytics.
+- Product performance analytics.
+- Regional sales analytics.
+- Natural-language AI retail assistant.
 
-## Project Results
+## Sample Project Results
 
-The current synthetic dataset produces the following results:
+The current synthetic dataset produces:
 
 | Metric | Result |
 |---|---:|
@@ -153,31 +206,34 @@ The current synthetic dataset produces the following results:
 | Laptop | ₹110,000 |
 | Mobile | ₹50,000 |
 | Headphones | ₹10,000 |
+| Office Chair | ₹8,000 |
+| Keyboard | ₹6,000 |
 
-These figures are based on the project's synthetic dataset and are intended to demonstrate the analytics pipeline.
+These results are generated from synthetic data for demonstration purposes.
 
-
-## Project Limitations
+## Limitations
 
 - The retail dataset is synthetic.
-- The AI agent uses a static exported Gold JSON snapshot.
-- Refreshing the analytics requires exporting the latest Gold data again.
+- The local agent uses a static exported Gold JSON snapshot.
+- The data snapshot must be refreshed manually after changes to the Databricks Gold tables.
 - The local LLM requires Ollama and sufficient local computing resources.
-- Revenue analysis does not represent profit, since product costs and operating expenses are not modelled.
-- The project is a portfolio demonstration and is not a production retail deployment.
+- Revenue is not profit. Product costs and operating expenses are not included.
+- This is a portfolio demonstration, not a production retail deployment.
 
 ## Future Enhancements
 
-- Live data connectivity between the agent and Databricks.
-- Additional inventory and profitability analytics.
-- More comprehensive agent evaluation.
-- Improved tool governance and SQL safety.
+- Live connectivity between Databricks and the local agent.
+- Inventory and profitability analytics.
+- Expanded agent evaluation and reliability testing.
+- Stronger tool governance and SQL safety.
 - Production deployment and monitoring.
 
 ## Author
 
-Developed as a hands-on portfolio project demonstrating data engineering, retail analytics, local LLM integration, Agentic AI, and application development.
+**Dony Varghese**
+
+GitHub: [@donyvarghese](https://github.com/donyvarghese)
 
 ## License
 
-MIT License
+License information will be added when a project license is selected.
