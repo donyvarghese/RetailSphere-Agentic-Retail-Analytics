@@ -1,0 +1,216 @@
+{
+  "gold_sales": [
+    {
+      "order_id": 1008,
+      "order_date": "2026-03-12",
+      "customer_id": 2,
+      "customer_name": "Priya",
+      "state": "Tamil Nadu",
+      "gender": "Female",
+      "product_id": 102,
+      "product_name": "Mobile",
+      "category": "Electronics",
+      "quantity": 1,
+      "price": 25000.0,
+      "item_revenue": 25000.0
+    },
+    {
+      "order_id": 1004,
+      "order_date": "2026-02-03",
+      "customer_id": 4,
+      "customer_name": "Anjali",
+      "state": "Kerala",
+      "gender": "Female",
+      "product_id": 104,
+      "product_name": "Office Chair",
+      "category": "Furniture",
+      "quantity": 1,
+      "price": 8000.0,
+      "item_revenue": 8000.0
+    },
+    {
+      "order_id": 1001,
+      "order_date": "2026-01-05",
+      "customer_id": 1,
+      "customer_name": "Arun",
+      "state": "Kerala",
+      "gender": "Male",
+      "product_id": 101,
+      "product_name": "Laptop",
+      "category": "Electronics",
+      "quantity": 1,
+      "price": 55000.0,
+      "item_revenue": 55000.0
+    },
+    {
+      "order_id": 1007,
+      "order_date": "2026-03-02",
+      "customer_id": 6,
+      "customer_name": "Sneha",
+      "state": "Delhi",
+      "gender": "Female",
+      "product_id": 103,
+      "product_name": "Headphones",
+      "category": "Accessories",
+      "quantity": 3,
+      "price": 2000.0,
+      "item_revenue": 6000.0
+    },
+    {
+      "order_id": 1003,
+      "order_date": "2026-01-15",
+      "customer_id": 3,
+      "customer_name": "Rahul",
+      "state": "Karnataka",
+      "gender": "Male",
+      "product_id": 105,
+      "product_name": "Keyboard",
+      "category": "Accessories",
+      "quantity": 2,
+      "price": 1500.0,
+      "item_revenue": 3000.0
+    },
+    {
+      "order_id": 1006,
+      "order_date": "2026-02-15",
+      "customer_id": 5,
+      "customer_name": "Vikram",
+      "state": "Maharashtra",
+      "gender": "Male",
+      "product_id": 101,
+      "product_name": "Laptop",
+      "category": "Electronics",
+      "quantity": 1,
+      "price": 55000.0,
+      "item_revenue": 55000.0
+    },
+    {
+      "order_id": 1001,
+      "order_date": "2026-01-05",
+      "customer_id": 1,
+      "customer_name": "Arun",
+      "state": "Kerala",
+      "gender": "Male",
+      "product_id": 103,
+      "product_name": "Headphones",
+      "category": "Accessories",
+      "quantity": 2,
+      "price": 2000.0,
+      "item_revenue": 4000.0
+    },
+    {
+      "order_id": 1008,
+      "order_date": "2026-03-12",
+      "customer_id": 2,
+      "customer_name": "Priya",
+      "state": "Tamil Nadu",
+      "gender": "Female",
+      "product_id": 105,
+      "product_name": "Keyboard",
+      "category": "Accessories",
+      "quantity": 2,
+      "price": 1500.0,
+      "item_revenue": 3000.0
+    },
+    {
+      "order_id": 1002,
+      "order_date": "2026-01-08",
+      "customer_id": 2,
+      "customer_name": "Priya",
+      "state": "Tamil Nadu",
+      "gender": "Female",
+      "product_id": 102,
+      "product_name": "Mobile",
+      "category": "Electronics",
+      "quantity": 1,
+      "price": 25000.0,
+      "item_revenue": 25000.0
+    }
+  ],
+  "gold_product_performance": [
+    {
+      "product_id": 101,
+      "product_name": "Laptop",
+      "category": "Electronics",
+      "units_sold": 2,
+      "total_revenue": 110000.0
+    },
+    {
+      "product_id": 102,
+      "product_name": "Mobile",
+      "category": "Electronics",
+      "units_sold": 2,
+      "total_revenue": 50000.0
+    },
+    {
+      "product_id": 103,
+      "product_name": "Headphones",
+      "category": "Accessories",
+      "units_sold": 5,
+      "total_revenue": 10000.0
+    },
+    {
+      "product_id": 104,
+      "product_name": "Office Chair",
+      "category": "Furniture",
+      "units_sold": 1,
+      "total_revenue": 8000.0
+    },
+    {
+      "product_id": 105,
+      "product_name": "Keyboard",
+      "category": "Accessories",
+      "units_sold": 4,
+      "total_revenue": 6000.0
+    }
+  ],
+  "gold_state_sales": [
+    {
+      "state": "Kerala",
+      "total_revenue": 67000.0,
+      "unique_customers": 2,
+      "total_orders": 2
+    },
+    {
+      "state": "Maharashtra",
+      "total_revenue": 55000.0,
+      "unique_customers": 1,
+      "total_orders": 1
+    },
+    {
+      "state": "Tamil Nadu",
+      "total_revenue": 53000.0,
+      "unique_customers": 1,
+      "total_orders": 2
+    },
+    {
+      "state": "Delhi",
+      "total_revenue": 6000.0,
+      "unique_customers": 1,
+      "total_orders": 1
+    },
+    {
+      "state": "Karnataka",
+      "total_revenue": 3000.0,
+      "unique_customers": 1,
+      "total_orders": 1
+    }
+  ],
+  "gold_monthly_revenue": [
+    {
+      "sales_month": "2026-01",
+      "total_revenue": 87000.0,
+      "total_orders": 3
+    },
+    {
+      "sales_month": "2026-02",
+      "total_revenue": 63000.0,
+      "total_orders": 2
+    },
+    {
+      "sales_month": "2026-03",
+      "total_revenue": 34000.0,
+      "total_orders": 2
+    }
+  ]
+}
